@@ -1,0 +1,14 @@
+/* @import '~@angular/material/prebuilt-themes/deeppurple-amber.css'; */
+
+body {
+  margin: 0 auto;
+  background-color: #87B738;
+  height: 100%;
+  width: 100%;
+  font-family: 'Open Sans';
+  color: #FFDF5C;
+}
+
+h1 {
+  font-weight: 800;
+}
