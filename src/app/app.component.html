@@ -1,8 +1,20 @@
 <article class="content__wrapper">
   <h1>Time to {{eventTitle}}</h1>
-  <p>This is where it's being counted down</p>
-  <form>
-    <input type="text" (input)="titleEvent($event)">
+  <div class="example-events">
+    {{ timeToEvent }}
+  </div>
+  <form #eventForm="ngForm">
+    <mat-form-field class="example-full-width" appearance="outline" floatLabel="always">
+      <mat-label>title</mat-label>
+      <input matInput type="text" (input)="titleEvent($event)" id="title">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="outline" floatLabel="always">
+      <mat-label>date</mat-label>
+      <input matInput [matDatepicker]="picker" (dateInput)="addEvent('input', $event)">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
   </form>
 
 </article>
