@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
-import { Subscription, interval } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -55,11 +55,11 @@ export class AppComponent implements OnInit, OnDestroy {
     // this.calculateTimeToEvent();
     // this.timeToEvent = `${days}d, ${hours}h, ${minutes}m, ${seconds}s`;
 
-    // setInterval(() => {
-    let { days, hours, minutes, seconds } = this.calculateTimeToEvent();
-    this.timeToEvent = `${days}d, ${hours}h, ${minutes}m, ${seconds}s`;
-    return localStorage.setItem('time_to_event', this.timeToEvent);
-    // }, 1);
+    setInterval(() => {
+      let { days, hours, minutes, seconds } = this.calculateTimeToEvent();
+      this.timeToEvent = `${days}d, ${hours}h, ${minutes}m, ${seconds}s`;
+      return localStorage.setItem('time_to_event', this.timeToEvent);
+    }, 1);
   }
 
   private getTimeToEvent(): any {
@@ -69,11 +69,6 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.getTitleEvent();
     this.getTimeToEvent();
-    // every second
-    // this.subscription = interval(60000).subscribe(() => {
-    //   this.calculateTimeToEvent();
-    //   console.log(this.calculateTimeToEvent());
-    // });
   }
 
   ngOnDestroy(): void {
