@@ -1,8 +1,9 @@
 <article class="content__wrapper">
-  <h1>Time to {{eventTitle}}</h1>
   <div class="example-events">
-    <p>{{ timeToEvent }}</p>
+    <h1>Time to {{eventTitle}}</h1>
   </div>
+
+  <p>{{ timeToEvent }}</p>
   <form #eventForm="ngForm">
     <mat-form-field class="example-full-width" appearance="outline" floatLabel="always">
       <mat-label>title</mat-label>

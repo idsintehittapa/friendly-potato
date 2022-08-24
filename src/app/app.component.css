@@ -6,3 +6,10 @@
   width: 100vw;
   align-items: center;
 }
+
+.example-events {
+  width: 100vw;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+}
