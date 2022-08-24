@@ -19,72 +19,52 @@ export class AppComponent implements OnInit, OnDestroy {
   // Date of event
   private subscription!: Subscription;
 
-  public dateNow = new Date();
-  public eventDate = new Date();
+  private milliSecondsEvent = 0;
+  public timeToEvent: string = '';
 
-  onChangeDate(value: any) {
-    this.eventDate = value;
-    console.log(value);
+  calculateTimeToEvent() {
+    let milliSecondsNow = Date.now();
+
+    const diff = (this.milliSecondsEvent - milliSecondsNow) / 1000;
+    const days = Math.floor(diff / 86400);
+    const hours = Math.floor((diff % 86400) / 3600);
+    const minutes = Math.floor((diff % 3600) / 60);
+    const seconds = Math.floor(diff % 60);
+    return { days, hours, minutes, seconds };
   }
-
-  events: string[] = [];
 
   addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
-    this.events.push(`${type}: ${event.value}`);
+    if (event.value !== null) {
+      this.milliSecondsEvent = Date.UTC(
+        event.value.getFullYear(),
+        event.value.getMonth(),
+        event.value.getDate(),
+        event.value.getHours(),
+        event.value.getMinutes(),
+        event.value.getSeconds()
+      );
+    }
+
+    // TODO: check if this can be in ngOnInit
+    // let { days, hours, minutes, seconds } =
+    // this.calculateTimeToEvent();
+    // this.timeToEvent = `${days}d, ${hours}h, ${minutes}m, ${seconds}s`;
+
+    setInterval(() => {
+      let { days, hours, minutes, seconds } = this.calculateTimeToEvent();
+      this.timeToEvent = `${days}d, ${hours}h, ${minutes}m, ${seconds}s`;
+    }, 1);
   }
 
-  // handleDateEvent(value: any) {
-  //   this.eventDate = value;
-  //   console.log(this.eventDate);
-  // }
-
-  milliSecondsInASecond = 1000;
-  hoursInADay = 24;
-  minutesInAnHour = 60;
-  SecondsInAMinute = 60;
-
-  public timeDifference: any;
-  public secondsToEventDate: any;
-  public minutesToEventDate: any;
-  public hoursToEventDate: any;
-  public daysToEventDate: any;
-
-  private getTimeDifference() {
-    this.timeDifference = this.eventDate.getTime() - new Date().getTime();
-    this.allocateTimeUnits(this.timeDifference);
-  }
-
-  private allocateTimeUnits(timeDifference: number) {
-    this.secondsToEventDate = Math.floor(
-      (timeDifference / this.milliSecondsInASecond) % this.SecondsInAMinute
-    );
-    this.minutesToEventDate = Math.floor(
-      (timeDifference / (this.milliSecondsInASecond * this.minutesInAnHour)) %
-        this.SecondsInAMinute
-    );
-    this.hoursToEventDate = Math.floor(
-      (timeDifference /
-        (this.milliSecondsInASecond *
-          this.minutesInAnHour *
-          this.SecondsInAMinute)) %
-        this.hoursInADay
-    );
-    this.daysToEventDate = Math.floor(
-      timeDifference /
-        (this.milliSecondsInASecond *
-          this.minutesInAnHour *
-          this.SecondsInAMinute *
-          this.hoursInADay)
-    );
-  }
-
-  ngOnInit() {
-    this.subscription = interval(1000).subscribe((x) => {
-      this.getTimeDifference();
+  ngOnInit(): void {
+    // every second
+    this.subscription = interval(60000).subscribe(() => {
+      this.calculateTimeToEvent();
+      console.log(this.calculateTimeToEvent());
     });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 }

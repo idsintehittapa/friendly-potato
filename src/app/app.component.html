@@ -1,10 +1,7 @@
 <article class="content__wrapper">
   <h1>Time to {{eventTitle}}</h1>
-  <div class="timer">
-    <span id="days"> {{daysToEventDate}}day(s), </span>
-    <span id="hours"> {{hoursToEventDate}}h, </span>
-    <span id="minutes"> {{minutesToEventDate}}min, </span>
-    <span id="seconds">{{secondsToEventDate}}s</span>
+  <div class="example-events">
+    {{ timeToEvent }}
   </div>
   <form #eventForm="ngForm">
     <mat-form-field class="example-full-width" appearance="outline" floatLabel="always">
@@ -18,18 +15,6 @@
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-
-    <div class="example-events">
-      <div *ngFor="let e of events">{{e}}</div>
-    </div>
-
-    <!-- 
-    //old one
-    <mat-form-field class="example-full-width" appearance="outline" floatLabel="always">
-      <mat-label>date</mat-label>
-      <input matInput type="date" [(ngModel)]="eventDate" (ionChange)="onChangeDate(eventDate)">
-    </mat-form-field> -->
-
   </form>
 
 </article>
