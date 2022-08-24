@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
-import { Subscription, interval } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -11,9 +11,14 @@ export class AppComponent implements OnInit, OnDestroy {
   title = 'Frontend Challenge - Johanna Blom';
 
   // Title of event
-  public eventTitle: string = '';
+  public eventTitle: any = '';
   titleEvent(event: any) {
     this.eventTitle = event.target.value;
+    return localStorage.setItem('event_title', this.eventTitle);
+  }
+
+  private getTitleEvent(): any {
+    this.eventTitle = localStorage.getItem('event_title');
   }
 
   // Date of event
@@ -33,7 +38,7 @@ export class AppComponent implements OnInit, OnDestroy {
     return { days, hours, minutes, seconds };
   }
 
-  addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
+  addEvent(type: any, event: MatDatepickerInputEvent<Date>) {
     if (event.value !== null) {
       this.milliSecondsEvent = Date.UTC(
         event.value.getFullYear(),
@@ -53,15 +58,17 @@ export class AppComponent implements OnInit, OnDestroy {
     setInterval(() => {
       let { days, hours, minutes, seconds } = this.calculateTimeToEvent();
       this.timeToEvent = `${days}d, ${hours}h, ${minutes}m, ${seconds}s`;
+      return localStorage.setItem('time_to_event', this.timeToEvent);
     }, 1);
   }
 
+  private getTimeToEvent(): any {
+    this.timeToEvent = localStorage.getItem('time_to_event') || 'undefined';
+  }
+
   ngOnInit(): void {
-    // every second
-    this.subscription = interval(60000).subscribe(() => {
-      this.calculateTimeToEvent();
-      console.log(this.calculateTimeToEvent());
-    });
+    this.getTitleEvent();
+    this.getTimeToEvent();
   }
 
   ngOnDestroy(): void {
