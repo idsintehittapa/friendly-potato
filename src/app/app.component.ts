@@ -11,9 +11,14 @@ export class AppComponent implements OnInit, OnDestroy {
   title = 'Frontend Challenge - Johanna Blom';
 
   // Title of event
-  public eventTitle: string = '';
+  public eventTitle: any = '';
   titleEvent(event: any) {
     this.eventTitle = event.target.value;
+    return localStorage.setItem('event_title', this.eventTitle);
+  }
+
+  private getTileEvent(): any {
+    this.eventTitle = localStorage.getItem('event_title');
   }
 
   // Date of event
@@ -57,11 +62,12 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.getTileEvent();
     // every second
-    this.subscription = interval(60000).subscribe(() => {
-      this.calculateTimeToEvent();
-      console.log(this.calculateTimeToEvent());
-    });
+    // this.subscription = interval(60000).subscribe(() => {
+    //   this.calculateTimeToEvent();
+    //   console.log(this.calculateTimeToEvent());
+    // });
   }
 
   ngOnDestroy(): void {
