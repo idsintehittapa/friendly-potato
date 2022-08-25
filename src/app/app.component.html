@@ -20,12 +20,12 @@
   <div class="form__wrapper">
     <form>
       <mat-form-field class="example-full-width" appearance="outline" floatLabel="always">
-        <mat-label>title</mat-label>
+        <mat-label>Title</mat-label>
         <input matInput type="text" (input)="titleEvent($event)" id="title">
       </mat-form-field>
 
       <mat-form-field class="example-full-width" appearance="outline" floatLabel="always">
-        <mat-label>date</mat-label>
+        <mat-label>Date</mat-label>
         <input matInput [matDatepicker]="picker" (dateInput)="addEvent('input', $event)">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
