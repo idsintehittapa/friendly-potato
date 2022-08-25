@@ -57,13 +57,13 @@ export class AppComponent implements OnInit, OnDestroy {
 
     setInterval(() => {
       let { days, hours, minutes, seconds } = this.calculateTimeToEvent();
-      this.timeToEvent = `${days}d, ${hours}h, ${minutes}m, ${seconds}s`;
+      this.timeToEvent = `${days} days, ${hours}h, ${minutes}m, ${seconds}s`;
       return localStorage.setItem('time_to_event', this.timeToEvent);
     }, 1);
   }
 
   private getTimeToEvent(): any {
-    this.timeToEvent = localStorage.getItem('time_to_event') || 'undefined';
+    this.timeToEvent = localStorage.getItem('time_to_event') || '';
   }
 
   ngOnInit(): void {
