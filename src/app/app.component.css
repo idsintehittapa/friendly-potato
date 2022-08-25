@@ -1,8 +1,64 @@
-.content__wrapper {
+article {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 70% 30%;
+  width: 100vw;
+  height: 100vh;
+}
+
+.text__wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  height: 100vh;
-  width: 100vw;
   align-items: center;
+  justify-content: center;
+}
+
+.form__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 80%;
+}
+
+::ng-deep .mat-form-field .mat-input-element {
+  font-family: "Open Sans";
+}
+
+/* input outline color */
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #fff !important;
+}
+
+/* mat-input focused color */
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: #fff !important;
+}
+
+/* mat-label normal state style */
+::ng-deep.mat-form-field-label {
+  color: #fff !important;
+}
+
+/* mat-label focused style */
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+  color: #fff !important;
+}
+
+.title__wrapper,
+.event__wrapper {
+  width: 90%;
+}
+
+@media (min-width: 768px) {
+
+  form {
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 2vw;
+  }
 }
