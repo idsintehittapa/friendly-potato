@@ -1,39 +1,47 @@
 <article>
   <div class="text__wrapper">
     <div class="title__wrapper">
-      <svg width="100%" height="100%" viewBox="0 0 500 75" preserveAspectRatio="xMinYMid meet"
-        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <text class="event__title" x='0' y="50" font-size="40" textLength='100%' lengthAdjust="spacing"
-          font-weight="800">Time to
-          {{eventTitle}}</text>
-      </svg>
+      <p aria-labelledby="t">
+        <svg width="100%" height="100%" viewBox="0 0 500 75" preserveAspectRatio="xMinYMid meet"
+          xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true">
+          <g class="text">
+            <text x="0" y="50" font-size="40" textLength="100%" lengthAdjust="spacing" font-weight="800" id="t2">
+              Time to {{ eventTitle }}
+            </text>
+          </g>
+        </svg>
+      </p>
     </div>
 
     <div class="event__wrapper">
-      <svg width="100%" height="100%" viewBox="0 0 500 75" preserveAspectRatio="xMinYMid meet"
-        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <text class="event_date" font-size="50" textLength='100%' lengthAdjust="spacing" x='0' y="40" font-weight="400">
-          {{timeToEvent}}</text>
-      </svg>
+      <p aria-labelledby="t2">
+        <svg width="100%" height="100%" viewBox="0 0 500 75" preserveAspectRatio="xMinYMid meet"
+          xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true">
+          <g class="text">
+            <text class="event_date" font-size="50" textLength="100%" lengthAdjust="spacing" x="0" y="40"
+              font-weight="400" id="t2">
+              {{ timeToEvent }}
+            </text>
+          </g>
+        </svg>
+      </p>
     </div>
   </div>
   <div class="form__wrapper">
     <form>
       <mat-form-field class="example-full-width" appearance="outline" floatLabel="always">
         <mat-label>Title</mat-label>
-        <input matInput type="text" (input)="titleEvent($event)" id="title">
+        <input matInput type="text" (input)="titleEvent($event)" id="title" />
       </mat-form-field>
 
       <mat-form-field class="example-full-width" appearance="outline" floatLabel="always">
         <mat-label>Date</mat-label>
-        <input matInput [matDatepicker]="picker" (dateInput)="addEvent('input', $event)">
+        <input matInput [matDatepicker]="picker" (dateInput)="addEvent('input', $event)" />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
     </form>
   </div>
-
 </article>
-
 
 <router-outlet></router-outlet>
