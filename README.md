@@ -6,10 +6,10 @@ Friendly-potato is a countdown app in which you can define an end date and the n
 
 ## Getting started
 
-. Clone the repository
-. `cd 'your project folder'`
-. `npm install`
-. Run `ng serve` to start the dev server
+. Clone the repository  
+. `cd 'your project folder'`  
+. `npm install`  
+. Run `ng serve` to start the dev server  
 . In your browser go to http://localhost:4200/. The app will automatically reload if you change any of the source files
 
 Make sure that you `@angular/cli` installed globally.
