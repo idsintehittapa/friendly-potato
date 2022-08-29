@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { MatDatepickerInputEvent } from '@angular/material/datepicker'
 
 @Component({
@@ -10,10 +10,45 @@ export class AppComponent implements OnInit {
   title = 'Frontend Challenge - Johanna Blom'
 
   // Title of event
+
+  private fontSize: number = 80
   public eventTitle: any = ''
+  public textLength: any
+
   titleEvent(event: any) {
     this.eventTitle = event.target.value
+    let textLength = this.eventTitle.length
+    console.log(textLength)
+
+    if (textLength < 5) {
+      this.titleSize = {
+        'font-size': 80,
+      }
+    } else if (textLength < 10) {
+      this.titleSize = {
+        'font-size': 60,
+      }
+    } else if (textLength < 15) {
+      this.titleSize = {
+        'font-size': 50,
+      }
+    } else if (textLength < 20) {
+      this.titleSize = {
+        'font-size': 40,
+      }
+    } else {
+      this.titleSize = {
+        'font-size': 20,
+      }
+
+      return
+    }
+
     return localStorage.setItem('event_title', this.eventTitle)
+  }
+
+  public titleSize = {
+    'font-size': this.fontSize,
   }
 
   private getTitleEvent(): any {
