@@ -2,10 +2,11 @@
   <div class="text__wrapper">
     <div class="title__wrapper">
       <p aria-labelledby="t">
-        <svg width="100%" height="100%" viewBox="0 0 500 75" preserveAspectRatio="xMinYMid meet"
+        <svg textLenght="100%" height="100%" width="100%" viewBox="0 0 500 75" preserveAspectRatio="xMinYMid meet"
           xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true">
           <g class="text">
-            <text x="0" y="50" font-size="40" textLength="100%" lengthAdjust="spacing" font-weight="800" id="t">
+            <text [ngStyle]="titleSize" x="0" y="60" textLength="100%" lengthAdjust="spacing" font-weight="800" id="t"
+              height="100%">
               Time to {{ eventTitle }}
             </text>
           </g>
