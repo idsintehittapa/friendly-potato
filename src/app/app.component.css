@@ -2,8 +2,8 @@ article {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 70% 30%;
-  width: 100vw;
-  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
 }
 
 .text__wrapper {
@@ -13,6 +13,7 @@ article {
   justify-content: center;
   width: 100vw;
 }
+
 
 .form__wrapper {
   display: flex;
@@ -35,7 +36,8 @@ form {
 }
 
 ::ng-deep .mat-form-field .mat-input-element {
-  font-family: "Open Sans";
+  font-family: "Open Sans" !important;
+  /* position: relative !important; */
 }
 
 /* input outline color */
