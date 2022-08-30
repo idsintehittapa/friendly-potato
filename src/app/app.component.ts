@@ -18,7 +18,6 @@ export class AppComponent implements OnInit {
   titleEvent(event: any) {
     this.eventTitle = event.target.value
     let textLength = this.eventTitle.length
-    console.log(textLength)
 
     if (textLength < 5) {
       this.titleSize = {
